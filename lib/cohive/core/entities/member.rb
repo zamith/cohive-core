@@ -16,13 +16,17 @@ class Member
 
   def valid?
     # TODO: Add clean validations
-    return false unless phone_no
+    return false unless phone_no && name && email
     true
   end
 
   def errors
-    # TODO: Create correct error messages
-    ValidationErrors.new
+    error_messages = []
+    error_messages << "missing phone number" unless phone_no
+    error_messages << "missing name" unless name
+    error_messages << "missing email" unless email
+    error_messages << "missing company" unless company_id
+    ValidationErrors.new(error_messages)
   end
 
   def value

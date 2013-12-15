@@ -8,9 +8,11 @@ class CoworkerAdder
   end
 
   def add
-    member.company_id = company.id
-    member.space_id = space.id
-    member_repo.save member
+    if member.valid?
+      member.company_id = company.id
+      member.space_id = space.id
+      member_repo.save member
+    end
   end
 
   def valid?
@@ -22,18 +24,16 @@ class CoworkerAdder
   end
 
   def errors
-    # TODO: Better errors
-    ValidationErrors.new
+    member.errors
   end
 
   private
   attr_reader :member, :params, :space, :member_repo, :company_repo
 
   def company
-    first_or_initialize(company_search).tap do |company_representation|
-      company_representation.space_id = space.id
-      company_repo.save company_representation
-    end
+    company_representation = first_or_initialize(company_search)
+    company_representation.space_id = space.id
+    company_repo.save company_representation
   end
 
   def member_params

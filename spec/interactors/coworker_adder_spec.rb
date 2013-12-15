@@ -2,6 +2,7 @@ require 'spec_helper'
 require 'interactors/coworker_adder'
 require 'entities/member'
 require 'entities/company'
+require 'helpers/validation_errors'
 
 class Space < Struct.new(:id); end
 class CoworkerParams < Struct.new(:member, :company); end
@@ -25,6 +26,24 @@ describe CoworkerAdder do
       member = member_repo.last
       expect(member.space_id).to eq default_space.id
       expect(company_repo.find_by_id(member.company_id).space_id).to eq default_space.id
+    end
+
+    context "invalid member" do
+      it "does not save the member" do
+        adder = default_coworker_adder member_params: { name: "Mr. Invalid" }
+
+        expect {
+          adder.add
+        }.not_to change{member_repo.all.size}
+      end
+
+      it "does not save the company" do
+        adder = default_coworker_adder member_params: { name: "Mr. Invalid" }
+
+        expect {
+          adder.add
+        }.not_to change{company_repo.all.size}
+      end
     end
 
     context "the company does not exist" do
@@ -119,7 +138,7 @@ describe CoworkerAdder do
   private
 
   def default_coworker_adder(member_params: nil, company_params: nil)
-    member_params ||= { name: "John", phone_no: "1234" }
+    member_params ||= { name: "John", phone_no: "1234", email: "random@example.com" }
     company_params ||= { name: "GB" }
     params = CoworkerParams.new(member_params, company_params)
     CoworkerAdder.new params: params, space: default_space
