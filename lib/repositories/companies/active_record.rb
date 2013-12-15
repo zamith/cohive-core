@@ -1,7 +1,7 @@
 require 'active_record'
 
 module Repositories
-  module Members
+  module Companies
     class ActiveRecord
       def clear
         Company.all.map(&:destroy)

@@ -1,7 +1,7 @@
 require 'cohive/core/serializers/pipeline'
 
 class Company
-  attr_accessor :id, :name, :space_id
+  attr_accessor :id, :name, :space_id, :observations, :created_at, :updated_at
 
   def initialize(attrs = {})
     attrs.each do |attr_name, attr_value|

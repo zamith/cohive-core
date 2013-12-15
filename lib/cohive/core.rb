@@ -7,6 +7,8 @@ autoload :Member, "cohive/core/entities/member"
 
 autoload :CoworkerAdder, "cohive/core/interactors/coworker_adder"
 
+autoload :ValidationErrors, "cohive/core/helpers/validation_errors"
+
 module Serializers
   autoload :Pipeline, "cohive/core/serializers/pipeline"
 end
@@ -38,7 +40,7 @@ module Cohive
 
       def initialize
         @default_repo_type = :memory
-        @repositories = {members: nil, companies: nil}
+        @repositories = {companies: nil, members: nil}
         RepositoryConfig.define_repo_methods(@repositories)
       end
 
@@ -47,7 +49,6 @@ module Cohive
           repo_type ||= @default_repo_type
           require "repositories/#{repo.to_s}/#{repo_type.to_s}"
 
-          p "Repositories::#{repo.const_string}::#{repo_type.const_string}"
           Repository.register repo.singularize.to_sym, Kernel.const_get("Repositories::#{repo.const_string}::#{repo_type.const_string}").new
         end
       end

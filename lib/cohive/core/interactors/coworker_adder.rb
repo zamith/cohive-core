@@ -21,6 +21,11 @@ class CoworkerAdder
     end
   end
 
+  def errors
+    # TODO: Better errors
+    ValidationErrors.new
+  end
+
   private
   attr_reader :member, :params, :space, :member_repo, :company_repo
 
