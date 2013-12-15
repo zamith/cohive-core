@@ -47,6 +47,7 @@ module Cohive
           repo_type ||= @default_repo_type
           require "repositories/#{repo.to_s}/#{repo_type.to_s}"
 
+          p "Repositories::#{repo.const_string}::#{repo_type.const_string}"
           Repository.register repo.singularize.to_sym, Kernel.const_get("Repositories::#{repo.const_string}::#{repo_type.const_string}").new
         end
       end
@@ -68,6 +69,11 @@ class Symbol
   end
 
   def singularize
-    self.to_s.chomp("s")
+    string_version = self.to_s
+    if string_version.end_with?("ies")
+      string_version.gsub(/ies$/, 'y')
+    else
+      string_version.chomp("s")
+    end
   end
 end

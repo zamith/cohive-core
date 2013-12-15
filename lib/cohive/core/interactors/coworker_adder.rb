@@ -32,11 +32,23 @@ class CoworkerAdder
   end
 
   def member_params
-    if company_search && company_search != ""
-      params.member
+    if existent_company?
+      regular_member
     else
-      params.member.merge({boss: true})
+      promote_to_boss
     end
+  end
+
+  def regular_member
+    params.member
+  end
+
+  def promote_to_boss
+    params.member.merge({boss: true})
+  end
+
+  def existent_company?
+    company_search && !company_search.empty?
   end
 
   def company_search

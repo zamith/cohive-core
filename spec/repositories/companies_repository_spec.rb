@@ -22,4 +22,24 @@ describe "Companies Repository" do
       expect(repo.where(name: company_name, space_id: space_id).first).to eq company
     end
   end
+
+  context "#save" do
+    it "saves a company" do
+      company = Company.new name: "GB"
+
+      company = repo.save(company)
+
+      expect(repo.find_by_id(company.id)).to eq company
+    end
+
+    context "company with an id" do
+      it "updates the company" do
+        company = repo.save(Company.new name: "GB")
+
+        expect {
+          repo.save(company)
+        }.not_to change{repo.all.size}
+      end
+    end
+  end
 end

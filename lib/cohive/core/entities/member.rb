@@ -10,6 +10,10 @@ class Member
     end
   end
 
+  def boss?
+    !!boss
+  end
+
   def valid?
     # TODO: Add clean validations
     return false unless phone_no
