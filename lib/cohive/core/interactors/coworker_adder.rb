@@ -11,7 +11,7 @@ class CoworkerAdder
     if member.valid?
       member.company_id = company.id
       member.space_id = space.id
-      member_repo.save member
+      member_repo.save(member).value
     end
   end
 
@@ -33,7 +33,7 @@ class CoworkerAdder
   def company
     company_representation = first_or_initialize(company_search)
     company_representation.space_id = space.id
-    company_repo.save company_representation
+    company_repo.save(company_representation)
   end
 
   def member_params

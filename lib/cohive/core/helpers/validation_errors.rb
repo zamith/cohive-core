@@ -8,6 +8,6 @@ class ValidationErrors
   end
 
   def size
-    0
+    @error_messages.size
   end
 end

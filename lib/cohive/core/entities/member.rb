@@ -25,7 +25,6 @@ class Member
     error_messages << "missing phone number" unless phone_no
     error_messages << "missing name" unless name
     error_messages << "missing email" unless email
-    error_messages << "missing company" unless company_id
     ValidationErrors.new(error_messages)
   end
 
