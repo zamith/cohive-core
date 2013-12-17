@@ -8,6 +8,7 @@ autoload :Member, "cohive/core/entities/member"
 autoload :CoworkerAdder, "cohive/core/interactors/coworker_adder"
 
 autoload :ValidationErrors, "cohive/core/helpers/validation_errors"
+autoload :CoworkerParams, "cohive/core/helpers/coworker_params"
 
 module Serializers
   autoload :Pipeline, "cohive/core/serializers/pipeline"

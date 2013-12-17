@@ -3,9 +3,9 @@ require 'interactors/coworker_adder'
 require 'entities/member'
 require 'entities/company'
 require 'helpers/validation_errors'
+require 'helpers/coworker_params'
 
 class Space < Struct.new(:id); end
-class CoworkerParams < Struct.new(:member, :company); end
 
 describe CoworkerAdder do
   let(:member_repo) { Repository.for(:member) }
@@ -140,7 +140,7 @@ describe CoworkerAdder do
   def default_coworker_adder(member_params: nil, company_params: nil)
     member_params ||= { name: "John", phone_no: "1234", email: "random@example.com" }
     company_params ||= { name: "GB" }
-    params = CoworkerParams.new(member_params, company_params)
+    params = CoworkerParams.new(member: member_params, company: company_params)
     CoworkerAdder.new params: params, space: default_space
   end
 end
