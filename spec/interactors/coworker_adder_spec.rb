@@ -5,12 +5,10 @@ require 'entities/company'
 require 'helpers/validation_errors'
 require 'helpers/coworker_params'
 
-class Space < Struct.new(:id); end
-
 describe CoworkerAdder do
   let(:member_repo) { Repository.for(:member) }
   let(:company_repo) { Repository.for(:company) }
-  let(:default_space) { Space.new 1 }
+  let(:default_space) { Space.new id: 1, name: "Factory" }
 
   after :each do
     member_repo.clear
@@ -123,7 +121,7 @@ describe CoworkerAdder do
 
     context "a company with the same name exists in another space" do
       it "creates a new company" do
-        other_space = Space.new 2
+        other_space = Space.new id: 2, name: "Cowork X"
         company = Company.new name: "Random name", space_id: other_space.id
         company_repo.save company
         adder = default_coworker_adder company_params: { name: company.name, space_id: default_space }
