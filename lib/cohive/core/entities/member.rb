@@ -16,8 +16,7 @@ class Member
 
   def valid?
     # TODO: Add clean validations
-    return false unless phone_no && name && email
-    true
+    phone_no && name && email
   end
 
   def errors

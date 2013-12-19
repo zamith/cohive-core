@@ -16,7 +16,7 @@ describe CoworkerAdder do
   end
 
   context "#add" do
-    it "associates the coworkers with the default_space" do
+    it "associates the coworkers with the space" do
       adder = default_coworker_adder
 
       adder.add
