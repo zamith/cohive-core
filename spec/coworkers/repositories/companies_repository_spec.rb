@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'entities/company'
+require 'coworkers/entities/company'
 
 describe "Companies Repository" do
   let(:repo) { Repository.for(:company) }
@@ -7,7 +7,7 @@ describe "Companies Repository" do
   context "#where" do
     it "finds a company by name" do
       company_name = "new company"
-      company = Company.new name: company_name
+      company = Coworkers::Company.new name: company_name
       repo.save company
 
       expect(repo.where(name: company_name).first).to eq company
@@ -16,7 +16,7 @@ describe "Companies Repository" do
     it "finds a company by name and space id" do
       company_name = "new company"
       space_id = 1
-      company = Company.new name: company_name, space_id: space_id
+      company = Coworkers::Company.new name: company_name, space_id: space_id
       repo.save company
 
       expect(repo.where(name: company_name, space_id: space_id).first).to eq company
@@ -25,7 +25,7 @@ describe "Companies Repository" do
 
   context "#save" do
     it "saves a company" do
-      company = Company.new name: "GB"
+      company = Coworkers::Company.new name: "GB"
 
       company = repo.save(company)
 
@@ -34,7 +34,7 @@ describe "Companies Repository" do
 
     context "company with an id" do
       it "updates the company" do
-        company = repo.save(Company.new name: "GB")
+        company = repo.save(Coworkers::Company.new name: "GB")
 
         expect {
           repo.save(company)

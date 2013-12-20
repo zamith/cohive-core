@@ -8,21 +8,21 @@ module Repositories
       end
 
       def save(member)
-        ::Member.new(Member.create(member.value).value)
+        ::Coworkers::Member.new(Member.create(member.value).value)
       end
 
       def all
         Member.all.map do |member|
-          ::Member.new member.value
+          ::Coworkers::Member.new member.value
         end
       end
 
       def first
-        ::Member.new(Member.first.value)
+        ::Coworkers::Member.new(Member.first.value)
       end
 
       def last
-        ::Member.new(Member.last.value)
+        ::Coworkers::Member.new(Member.last.value)
       end
 
       class Member < ::ActiveRecord::Base

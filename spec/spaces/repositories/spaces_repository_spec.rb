@@ -1,12 +1,12 @@
 require 'spec_helper'
-require 'entities/space'
+require 'spaces/entities/space'
 
 describe "Spaces Repository" do
   let(:repo) { Repository.for(:space) }
 
   context "#save" do
     it "saves a space" do
-      space = Space.new name: "Factory"
+      space = ::Spaces::Space.new name: "Factory"
 
       saved_space = repo.save(space)
 

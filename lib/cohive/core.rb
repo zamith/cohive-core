@@ -2,16 +2,19 @@ require "cohive/core/version"
 
 autoload :Repository, "repository"
 
-autoload :Company, "cohive/core/entities/company"
-autoload :Member, "cohive/core/entities/member"
+autoload :ValidationErrors, "helpers/validation_errors"
 
-autoload :CoworkerAdder, "cohive/core/interactors/coworker_adder"
+module Coworkers
+  autoload :Company, "cohive/core/coworkers/entities/company"
+  autoload :Member, "cohive/core/coworkers/entities/member"
 
-autoload :ValidationErrors, "cohive/core/helpers/validation_errors"
-autoload :CoworkerParams, "cohive/core/helpers/coworker_params"
+  autoload :CoworkerAdder, "cohive/core/coworkers/interactors/coworker_adder"
+
+  autoload :CoworkerParams, "cohive/core/coworkers/helpers/coworker_params"
+end
 
 module Serializers
-  autoload :Pipeline, "cohive/core/serializers/pipeline"
+  autoload :Pipeline, "serializers/pipeline"
 end
 
 module Cohive

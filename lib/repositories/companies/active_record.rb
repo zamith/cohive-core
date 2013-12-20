@@ -8,24 +8,24 @@ module Repositories
       end
 
       def save(company)
-        ::Company.new(new_or_updated_company(company).value)
+        ::Coworkers::Company.new(new_or_updated_company(company).value)
       end
 
       def all
         Company.all.map do |company|
-          ::Company.new company.value
+          ::Coworkers::Company.new company.value
         end
       end
 
       def where(conditions = {})
         Company.where(conditions).map do |company|
-          ::Company.new company.value
+          ::Coworkers::Company.new company.value
         end
       end
 
       def find_by_id(id)
         company = Company.find(id)
-        ::Company.new company.value
+        ::Coworkers::Company.new company.value
       end
 
       private
