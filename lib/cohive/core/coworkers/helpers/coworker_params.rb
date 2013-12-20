@@ -7,7 +7,7 @@ module Coworkers
     end
 
     def full
-      if !member.empty?
+      if member && !member.empty?
         member_is_available
       else
         company
@@ -16,7 +16,7 @@ module Coworkers
 
     private
     def member_is_available
-      if !company.empty?
+      if company && !company.empty?
         member.merge({company_attributes: company})
       else
         member

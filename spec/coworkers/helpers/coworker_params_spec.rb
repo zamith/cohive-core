@@ -27,6 +27,18 @@ module Coworkers
           params.full.should eq member_params
         end
       end
+
+      it 'supports a nil company' do
+        params = CoworkerParams.new member: member_params, company: nil
+
+        params.full.should eq member_params
+      end
+
+      it 'supports a nil meber' do
+        params = CoworkerParams.new company: company_params, member: nil
+
+        params.full.should eq company_params
+      end
     end
 
     def member_params
