@@ -2,8 +2,6 @@ require "cohive/core/version"
 
 autoload :Repository, "repository"
 
-autoload :ValidationErrors, "helpers/validation_errors"
-
 module Coworkers
   autoload :Company, "cohive/core/coworkers/entities/company"
   autoload :Member, "cohive/core/coworkers/entities/member"

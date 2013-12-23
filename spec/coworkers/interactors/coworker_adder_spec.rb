@@ -3,7 +3,6 @@ require 'coworkers/interactors/coworker_adder'
 require 'coworkers/entities/member'
 require 'coworkers/entities/company'
 require 'coworkers/helpers/coworker_params'
-require 'helpers/validation_errors'
 
 module Coworkers
   describe CoworkerAdder do

@@ -4,7 +4,7 @@ module Serializers
       @object = object
     end
 
-    def serialize(attrs_method: :instance_variables)
+    def serialize(attrs_method: :attributes)
       attributes = object.public_send(attrs_method)
       get_real_attributes_from attributes
     end

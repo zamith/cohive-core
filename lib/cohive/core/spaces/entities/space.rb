@@ -11,7 +11,7 @@ module Spaces
     end
 
     def value
-      Serializers::Pipeline.new(self).serialize
+      Serializers::Pipeline.new(self).serialize(attrs_method: :instance_variables)
     end
   end
 end
