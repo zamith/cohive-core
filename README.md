@@ -1,6 +1,6 @@
 # Cohive::Core
 
-TODO: Write a gem description
+An implementation of the [clean architecture](http://blog.groupbuddies.com/posts/20-clean-architecture).
 
 ## Installation
 
